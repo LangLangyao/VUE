@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="box">
+        <counter></counter>
+
+        <counter></counter>
+
+        <counter></counter>
+    </div>
+    <template id="jsq">
+        <div>
+            <input type="button" value="点击加1" @click="increment">
+            <h3>{{ count }}</h3>
+        </div>
+
+    </template>
+</body>
+
+</html>
+<script>
+    // var dataobj = { count: 1 }   定义在外的话会共享同一个count数据
+    Vue.component("counter", {
+        template: "#jsq",
+        data: function () {
+            return { count: 0 }
+        },
+        methods: {
+            increment() {
+                this.count++
+            }
+        }
+    })
+    var vm = new Vue({
+        el: "#box",
+        data: {
+
+        },
+        methods: {
+
+        }
+    });
+
+</script>

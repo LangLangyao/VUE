@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../vue.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="box">
+        <mycom1></mycom1>
+    </div>
+</body>
+
+</html>
+<script>
+
+    Vue.component("mycom1", {
+        template: "<p>这是一个全局组件---{{ msg }}</p>",
+        data: function () {
+            return {
+                msg:"这是组件中的msg数据"
+            }
+        }
+    })
+    var vm = new Vue({
+        el: "#box",
+        data: {
+
+        },
+        methods: {
+
+        }
+    })
+</script>

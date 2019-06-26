@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="box">
+        <a href="" @click.prevent="comname='mycom1'">111</a>
+        <a href="" @click.prevent="comname='mycom2'">222</a>
+        <a href="" @click.prevent="comname='mycom3'">333</a>
+        <!-- component是一个占位符，：is属性可以用来指定要展示的组件名称 -->
+        <component :is="comname"></component>
+    </div>
+</body>
+</html>
+<script>
+    Vue.component("mycom1",{
+        template:"<div>1</div>"
+    })
+    Vue.component("mycom2",{
+        template:"<div>2</div>"
+    })
+    Vue.component("mycom3",{
+        template:"<div>3</div>"
+    })
+    var vm = new Vue({
+        el:"#box",
+        data:{
+            comname:"mycom1"
+        },
+        methods:{
+
+        }
+    })
+</script>

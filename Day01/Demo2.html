@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>跑马灯效果</title>
+    <script src="./lib/vue.js"></script>
+</head>
+<body>
+    <div id="box">
+        <input type="button" value="cmon 嗨起来" @click="dong">
+        <input type="button" value="老了要低调" @click="ting">
+        <p>{{ msg }}</p>
+    </div>
+    </div>
+</body>
+</html>
+<script>
+    var vm = new Vue({
+        el:"#box",
+        data:{
+            msg:"来啊，快活啊,反正有 大把时光",
+            timp:null
+        },
+        methods:{
+            dong:function(){
+                if(this.timp != null) return;
+                this.timp = setInterval(() => {  //开启定时器拼接字符串
+                    var start = this.msg.substring(0,1);//截取第一个字符
+                    var end = this.msg.substring(1);//截取剩余字符串
+                    this.msg = end + start;//拼接组成新字符串
+                },500) 
+                
+            },
+            ting:function(){
+                clearInterval(this.timp);
+                this.timp = null;
+            }
+        }
+    })
+</script>

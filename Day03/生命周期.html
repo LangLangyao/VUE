@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script src="../vue.js"></script>
+<script>
+    var vm = new Vue({
+        el: "",
+        data: {
+            msg: "OK"
+        },
+        methods: {
+            show(){
+                console.log("执行了show方法")
+            }
+        },
+        // beforeCreate(){  //第一个生命周期函数，实例被完全创建出来之前会执行这个钩子函数
+        //     console.log(this.msg);
+        //     this.show();
+        // },
+        created(){      //第二个生命周期函数，在created函数中，data与methods已经初始化好了
+            console.log(this.msg);
+            this.show();
+        }
+    })
+</script>

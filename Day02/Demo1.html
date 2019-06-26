@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>简易计算器</title>
+    <style>
+        *{margin: 0;padding: 0;}
+        #jg{margin-left: 10px;color: red;}
+        button{width: 20px;}
+    </style>
+</head>
+<body>
+    <div class="box">
+        <input type="text" id="ipt1" v-model="ipt1">
+        <select name="" id="" v-model="opt">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+        </select>
+        <input type="text" id="ipt2" v-model="ipt2">
+        <button @click="yunsuan">=</button>
+        <span id="jg">{{ jieg }}</span>
+    </div>
+</body>
+</html>
+<script src="./js/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el:".box",
+        data:{
+            ipt1:0,
+            ipt2:0,
+            opt:"+",
+            jieg:""
+        },
+        methods:{
+            yunsuan(){
+                // switch(this.opt){
+                //     case "+":
+                //         this.jieg = parseInt(this.ipt1)+parseInt(this.ipt2)
+                //     break;
+                //     case "-":
+                //         this.jieg = parseInt(this.ipt1)-parseInt(this.ipt2)
+                //     break;
+                //     case "*":
+                //         this.jieg = parseInt(this.ipt1)*parseInt(this.ipt2)
+                //     break;
+                //     case "/":
+                //         this.jieg = parseInt(this.ipt1)/parseInt(this.ipt2)
+                //     break;
+                // }
+                var jgString = "parseInt(this.ipt1)"+this.opt+"parseInt(this.ipt2)";
+                this.jieg = eval(jgString);
+            }
+            
+        }
+    })
+</script>

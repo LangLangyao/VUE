@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../vue.js"></script>
+    <link rel="stylesheet" href="../animate.css">
+    <title>Document</title>
+    <style>
+        li {
+            border: 1px solid #999;
+            width: 100%;
+            margin-top: 10px;
+            padding-left: 10px;
+        }
+
+        /* .v-enter,
+        .v-leave-to {
+            opacity: 0;
+            transform: translateY(80px);
+        }
+
+        .v-enter-active,
+        .v-leave-active {
+            transition: all 1s ease;
+        }
+
+        .v-move {
+            transition: all 1s ease;
+        }
+
+        .v-leave-active {
+            position: absolute;
+        } */
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <div>
+            ID:<input type="text" v-model="id">
+            Name: <input type="text" v-model="name">
+            <input type="button" value="添加" @click="add">
+        </div>
+        <transition-group appear tag="ul" enter-active-class="animated zoomIn" leave-active-class="animated zoomOut">
+            <li v-for="(item,i) in list" :key="item.id" @click="del(i)">
+                {{item.id}} -- {{item.name}}
+            </li>
+        </transition-group>
+    </div>
+</body>
+
+</html>
+<script>
+    var vm = new Vue({
+        el: "#box",
+        data: {
+            id: "",
+            name: "",
+            list: [
+                { id: 1, name: "秦王嬴政" },
+                { id: 2, name: "汉高祖刘邦" },
+                { id: 3, name: "唐太宗李世民" },
+                { id: 4, name: "第一女皇帝武则天" }
+            ]
+        },
+        methods: {
+            add() {
+                this.list.push({ id: this.id, name: this.name });
+                this.id = "";
+                this.name = "";
+            },
+            del(i) {
+                this.list.splice(i, 1);
+            }
+        }
+    })
+</script>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../vue.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="box">
+        <com @func="show"></com>
+    </div>
+    <template id="tmpl">
+        <div>
+            <p>这是一个子组件</p>
+            <input type="button" value="点击触发父组件方法" @click="myclick">
+        </div>
+    </template>
+</body>
+
+</html>
+<script>
+    var com = {
+        template: "#tmpl",
+        methods: {
+            myclick() {
+                console.log("ok");
+                this.$emit("func");
+            }
+        }
+
+    }
+    var vm = new Vue({
+        el: "#box",
+        data: {
+            show() {
+                console.log("这是父组件中的show方法")
+            }
+        },
+        methods: {
+
+        },
+        components: {
+            com: com,
+            // shows:show
+        }
+    })
+</script>

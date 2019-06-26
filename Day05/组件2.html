@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="box">
+        <my-com2></my-com2>
+    </div>
+</body>
+</html>
+<script>
+    Vue.component("myCom2",{
+        template:"<div>这是第二种创建组件的方式</div>"
+    })
+
+    var vm = new Vue({
+        el: "#box",
+        data:{
+
+        },
+        methods:{
+
+        }
+    })
+</script>

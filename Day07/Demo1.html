@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="box">
+        <cmt-box @func="loadComments"></cmt-box>
+
+        <ul class="list-group">
+            <li class="list-group-item" v-for="item in list" :key="list.id">
+                <span class="badge">评论人： {{ item.user }}</span>
+                {{ item.content }}
+            </li>
+        </ul>
+    </div>
+
+    <!-- 评论组件 -->
+    <template id="tmpl">
+        <div>
+            <div class="form-group">
+                <label>评论人：</label>
+                <input type="text" class="form-control" v-model="user">
+            </div>
+            <div class="form-group">
+                <label>评论内容：</label>
+                <textarea class="form-control" v-model="content"></textarea>
+            </div>
+            <div class="form-group">
+                <input type="button" value="发表" class="btn btn-primary" @click="postComment">
+            </div>
+        </div>
+    </template>
+</body>
+
+</html>
+<script src="../vue.js"></script>
+<script>
+    var commentBox = {
+        template: "#tmpl",
+        data() {
+            return {
+                user: "",
+                content: "",
+            }
+        },
+        methods: {
+            postComment() { //发表评论的方法
+                var comment = { id: Date.now(), user: this.user, content: this.content } //拿到最新的评论数据
+                //从localStorage中获取所有评论
+                var list = JSON.parse(localStorage.getItem("cmts") || "[]");
+                list.unshift(comment);
+                // 重新保存最新的评论数据
+                localStorage.setItem("cmts", JSON.stringify(list));
+                this.user = this.content = ""; //发表完以后让输入框为空
+                this.$emit("func");
+            }
+        }
+    }
+    var vm = new Vue({
+        el: "#box",
+        data: {
+            list: [
+                { id: Date.now(), user: "李白", content: "一步杀一人，千里不留行" },
+                { id: Date.now(), user: "宫本", content: "无敌的我，还能再加个蓝条" },
+                { id: Date.now(), user: "韩信", content: "卧槽，到家了还追我" }
+            ]
+        },
+        created() {
+            this.loadComments();
+        },
+        methods: {
+            loadComments() {
+                var list = JSON.parse(localStorage.getItem("cmts") || "[]");
+                this.list = list;
+            }
+        },
+        components: {
+            "cmt-box": commentBox
+        }
+
+    })
+</script>
